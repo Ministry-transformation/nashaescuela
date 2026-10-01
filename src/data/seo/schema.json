@@ -1,0 +1,24 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": "#organization",
+      "name": "Nasha Escuela",
+      "telephone": "+34 633 05 32 97",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "C. del Palangre, 20",
+        "postalCode": "03184",
+        "addressLocality": "Torrevieja",
+        "addressRegion": "Alicante",
+        "addressCountry": "ES"
+      },
+      "description": "Educational center and language school in Torrevieja."
+    }
+  ],
+  "deferred": [
+    "Course schema until current course facts are confirmed",
+    "AggregateRating/Review until profile data conflict is resolved"
+  ]
+}

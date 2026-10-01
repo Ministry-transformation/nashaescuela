@@ -1,0 +1,126 @@
+{
+  "locale": "es",
+  "lang": "es",
+  "nav": {
+    "brand": "Nasha Escuela",
+    "course": "Curso de español",
+    "location": "Dónde estamos",
+    "faq": "Preguntas",
+    "cta": "Clase de prueba",
+    "switch": "RU"
+  },
+  "hero": {
+    "eyebrow": "Prueba de español para adultos · Torrevieja",
+    "title": "Empieza a hablar español en Torrevieja",
+    "body": "¿Te cuesta explicar algo en una cita, preguntar por un trabajo o iniciar una conversación? Empieza por una situación real y conoce la escuela en una clase de prueba.",
+    "primary_cta": "Reservar clase de prueba",
+    "secondary_cta": "Ver cómo funciona",
+    "note": "Llámanos: te confirmamos disponibilidad, horario y condiciones."
+  },
+  "situations": {
+    "title": "¿En qué momento te gustaría hablar con más seguridad?",
+    "intro": "En el médico, al buscar trabajo o al conocer gente: elige una situación cotidiana que hoy te cuesta y cuéntanoslo al llamar.",
+    "items": [
+      "Explicar lo que necesitas en el médico o la farmacia",
+      "Preguntar por un trabajo o comunicarte allí",
+      "Resolver gestiones del día a día con más autonomía",
+      "Conversar con vecinos y conocer gente"
+    ]
+  },
+  "fit": {
+    "title": "No tienes que decidir el curso antes de llamar",
+    "body": "Cuéntanos qué te gustaría poder hacer en español y qué experiencia tienes. Antes de apuntarte, confirma si hay un grupo adecuado, el horario y las condiciones; después decides con la información clara.",
+    "points": [
+      "Habla de una situación concreta que quieres resolver",
+      "Pregunta por el nivel, el grupo, el horario y las condiciones actuales",
+      "Decide si encaja contigo después de conocer los detalles"
+    ]
+  },
+  "current": {
+    "title": "¿Empiezas desde cero o hace tiempo que no practicas?",
+    "intro": "Dínoslo al llamar. Confirmaremos qué nivel y grupos están disponibles ahora, junto con el horario y las condiciones, antes de que decidas.",
+    "fields": {
+      "level": "Nivel",
+      "schedule": "Horario",
+      "price": "Precio",
+      "format": "Formato"
+    },
+    "unknown": "Una llamada breve para consultar, sin decidir el curso todavía",
+    "cta": "Consultar nivel y condiciones"
+  },
+  "process": {
+    "title": "Así puedes conocer la escuela, paso a paso",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Reserva una clase de prueba",
+        "body": "Cuéntanos qué te gustaría poder hacer en español y qué experiencia tienes."
+      },
+      {
+        "n": "02",
+        "title": "Confirma las condiciones",
+        "body": "Te confirmaremos los grupos disponibles, el horario, el precio y las condiciones actuales."
+      },
+      {
+        "n": "03",
+        "title": "Decide con la información clara",
+        "body": "Si el grupo y las condiciones encajan contigo, acuerda con la escuela el siguiente paso."
+      }
+    ]
+  },
+  "trust": {
+    "eyebrow": "Nasha Escuela · Torrevieja",
+    "title": "Una escuela local con historia en Torrevieja",
+    "body": "La historia pública de Nasha Escuela en Torrevieja está documentada desde aproximadamente 2008–2009. La ficha pública actual indica C. del Palangre, 20 y el teléfono +34 633 05 32 97.",
+    "history": "2008–2009 → inicio documentado de la historia",
+    "address": "C. del Palangre, 20 · Torrevieja",
+    "phone": "+34 633 05 32 97"
+  },
+  "faq": {
+    "title": "Antes de apuntarte",
+    "items": [
+      {
+        "q": "No sé nada de español, ¿puedo empezar?",
+        "a": "Llámanos y cuéntanoslo. Confirmaremos si hay un grupo adecuado a tu nivel antes de que decidas."
+      },
+      {
+        "q": "¿En qué idioma se explican las clases?",
+        "a": "El idioma de explicación puede variar según el grupo; confírmalo al llamar antes de reservar."
+      },
+      {
+        "q": "¿Cuántas veces por semana hay clase y cuánto cuesta?",
+        "a": "Te confirmaremos el horario, el precio y las condiciones del grupo disponible antes de inscribirte."
+      },
+      {
+        "q": "¿Dónde son las clases?",
+        "a": "Las clases son en C. del Palangre, 20, 03184 Torrevieja. Puedes abrir la ruta desde el botón «Cómo llegar»."
+      },
+      {
+        "q": "¿Cómo reservo una clase de prueba?",
+        "a": "Llama al teléfono de la escuela. Confirmaremos disponibilidad, horario y condiciones."
+      },
+      {
+        "q": "¿Tengo que apuntarme después de la llamada?",
+        "a": "No. La llamada sirve para consultar los grupos y las condiciones; decides después de conocer los detalles."
+      }
+    ]
+  },
+  "location": {
+    "eyebrow": "Torrevieja",
+    "title": "Clases en la ciudad",
+    "address": "C. del Palangre, 20, 03184 Torrevieja, Alicante",
+    "phone": "+34 633 05 32 97",
+    "directions": "Cómo llegar"
+  },
+  "contact": {
+    "title": "Da el primer paso para hablar español",
+    "body": "Llama para reservar una clase de prueba. La escuela confirmará disponibilidad, horario y condiciones.",
+    "primary": "Reservar una clase de prueba",
+    "phone": "Llamar al +34 633 05 32 97",
+    "form_pending": "El formulario se activará cuando exista un destino verificado."
+  },
+  "footer": {
+    "note": "Español para adultos en Torrevieja",
+    "children_link": "¿Buscas programas para niños? El sitio infantil será independiente."
+  }
+}

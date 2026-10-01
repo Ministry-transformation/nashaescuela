@@ -1,0 +1,18 @@
+{
+  "es": {
+    "/es/": {
+      "title": "Clase de prueba de español en Torrevieja | Nasha Escuela",
+      "description": "Reserva una clase de prueba de español para adultos en Torrevieja. Llama para confirmar disponibilidad, horario y condiciones.",
+      "h1": "Empieza a hablar español en Torrevieja",
+      "robots": "index,follow"
+    }
+  },
+  "ru": {
+    "/ru/": {
+      "title": "Пробный урок испанского в Торревьехе | Наша Школа",
+      "description": "Запишитесь на пробный урок испанского для взрослых в Торревьехе. Позвоните, чтобы уточнить доступность, время и условия.",
+      "h1": "Начните говорить по-испански в Торревьехе",
+      "robots": "index,follow"
+    }
+  }
+}

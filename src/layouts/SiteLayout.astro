@@ -1,0 +1,34 @@
+---
+import '../styles/global.css';
+const { lang, title, description, canonical, alternateRu, alternateEs, noindex = false } = Astro.props;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'Nasha Escuela',
+  telephone: '+34 633 05 32 97',
+  address: {
+    '@type': 'PostalAddress', streetAddress: 'C. del Palangre, 20', postalCode: '03184',
+    addressLocality: 'Torrevieja', addressRegion: 'Alicante', addressCountry: 'ES'
+  },
+  description: 'Educational center and language school in Torrevieja.'
+};
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fffbf6" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
+    <title>{title}</title>
+    {canonical && <link rel="canonical" href={canonical} />}
+    {alternateRu && <link rel="alternate" hreflang="ru" href={alternateRu} />}
+    {alternateEs && <link rel="alternate" hreflang="es" href={alternateEs} />}
+    {alternateEs && <link rel="alternate" hreflang="x-default" href={alternateEs} />}
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

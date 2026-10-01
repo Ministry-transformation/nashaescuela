@@ -1,0 +1,13 @@
+{
+  "include": [
+    "/es/",
+    "/ru/"
+  ],
+  "exclude": [
+    "/",
+    "/es/privacidad/",
+    "/ru/konfidencialnost/",
+    "/es/cookies/",
+    "/ru/cookies/"
+  ]
+}

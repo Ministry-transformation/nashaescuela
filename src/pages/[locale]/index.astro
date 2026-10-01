@@ -1,0 +1,115 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ru from '../../data/ru.json';
+import es from '../../data/es.json';
+export function getStaticPaths() { return [{ params: { locale: 'ru' } }, { params: { locale: 'es' } }]; }
+const { locale } = Astro.params;
+const c = locale === 'ru' ? ru : es;
+const seo = locale === 'ru'
+  ? { title: 'Пробный урок испанского в Торревьехе | Наша Школа', description: 'Запишитесь на пробный урок испанского для взрослых в Торревьехе. Позвоните, чтобы уточнить доступность, время и условия.' }
+  : { title: 'Clase de prueba de español en Torrevieja | Nasha Escuela', description: 'Reserva una clase de prueba de español para adultos en Torrevieja. Llama para confirmar disponibilidad, horario y condiciones.' };
+const base = import.meta.env.PUBLIC_SITE_URL?.replace(/\/$/, '');
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = base ? `${base}/${locale}/` : undefined;
+const other = locale === 'ru' ? 'es' : 'ru';
+const alternateRu = base ? `${base}/ru/` : undefined;
+const alternateEs = base ? `${base}/es/` : undefined;
+const phone = '+34633053297';
+const mapUrl = 'https://www.google.com/maps/search/?api=1&query=C.%20del%20Palangre%2C%2020%2C%2003184%20Torrevieja';
+const situations = c.situations.items;
+---
+<SiteLayout lang={c.lang} title={seo.title} description={seo.description} canonical={canonical} alternateRu={alternateRu} alternateEs={alternateEs} noindex={!base}>
+  <a class="skip-link sr-only focus:not-sr-only" href="#main">{locale === 'ru' ? 'Перейти к содержанию' : 'Saltar al contenido'}</a>
+  <header class="site-header">
+    <a class="brand" href={`${basePath}/${locale}/`} aria-label={c.nav.brand}>
+      <img src={`${basePath}/assets/signature/spain-flag-simple-v02.svg`} alt="" width="34" height="24" />
+      <span>{c.nav.brand}</span>
+    </a>
+    <nav class="desktop-nav" aria-label={locale === 'ru' ? 'Основная навигация' : 'Navegación principal'}>
+      <a href="#course">{c.nav.course}</a><a href="#location">{c.nav.location}</a><a href="#faq">{c.nav.faq}</a>
+    </nav>
+    <div class="header-actions">
+      <a class="language" href={`${basePath}/${other}/`} lang={other} aria-label={locale === 'ru' ? 'Ver en español' : 'Ver en ruso'}>{c.nav.switch}</a>
+      <a class="button button-small" href={`tel:${phone}`}>{c.nav.cta}</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" id="course">
+      <div class="hero-copy" data-reveal="left">
+        <p class="eyebrow"><span class="dot"></span>{c.hero.eyebrow}</p>
+        <h1>{locale === 'ru' ? <>Начните говорить по-испански в <span class="highlight">Торревьехе</span></> : <>Empieza a hablar español en <span class="highlight">Torrevieja</span></>}</h1>
+        <p class="hero-body">{c.hero.body}</p>
+        <div class="hero-actions">
+          <a class="button" href={`tel:${phone}`}>{c.hero.primary_cta}<span aria-hidden="true"> ↗</span></a>
+          <a class="text-link" href="#process">{c.hero.secondary_cta} <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="small-note"><span aria-hidden="true">✳</span> {c.hero.note}</p>
+      </div>
+      <figure class="hero-photo" data-reveal="right">
+        <img src={`${basePath}/images/hero-spanish-learning.webp`} alt={locale === 'ru' ? 'Иллюстративное фото: взрослая женщина с улыбкой изучает испанский на телефоне в кафе' : 'Imagen ilustrativa: una mujer adulta sonríe mientras practica español con el móvil en una cafetería'} width="1536" height="1024" fetchpriority="high" decoding="async" />
+        <span class="photo-sticker">¡Vamos!</span>
+        <figcaption>{locale === 'ru' ? 'Счастлива: свободно говорю по-испански' : 'Feliz hablando español con confianza'}</figcaption>
+      </figure>
+    </section>
+
+    <section class="proof-strip wrap" aria-label={locale === 'ru' ? 'О школе' : 'Sobre la escuela'}>
+      <span><b class="proof-icon">⌖</b> Torrevieja, España</span>
+      <span><b class="proof-icon">✳</b> {locale === 'ru' ? 'Для взрослых' : 'Para adultos'}</span>
+      <span><b class="proof-icon">↗</b> {locale === 'ru' ? 'Условия уточняются' : 'Condiciones por consultar'}</span>
+    </section>
+
+    <section class="section wrap" id="situations">
+      <div class="section-heading"><p class="eyebrow">{locale === 'ru' ? 'ИСПАНСКИЙ В ГОРОДЕ' : 'EL ESPAÑOL EN TU CIUDAD'}</p><h2>{c.situations.title}</h2><p>{c.situations.intro}</p></div>
+      <div class="situation-grid">
+        {situations.map((item, index) => <article class={`situation-card card-${index + 1}`} data-reveal="up"><img src={`${basePath}/assets/icons/${['institution-v02.svg', 'laptop-v02.svg', 'cart-v02.svg', 'conversation-v02.svg'][index]}`} alt="" width="38" height="38" /><h3>{item}</h3><span class="card-number">0{index + 1}</span></article>)}
+      </div>
+      <div class="situation-next" data-reveal="up">
+        <p>{locale === 'ru' ? 'Узнали свою ситуацию? Расскажите о ней школе — вместе уточните, какой следующий шаг вам подходит.' : '¿Te reconoces en alguna situación? Cuéntasela a la escuela y consulta cuál puede ser tu siguiente paso.'}</p>
+        <a class="button" href={`tel:${phone}`}>{locale === 'ru' ? 'Обсудить мою цель' : 'Hablar de mi objetivo'}<span aria-hidden="true"> ↗</span></a>
+      </div>
+    </section>
+
+    <section class="life-section wrap" data-reveal="up">
+      <div class="life-copy"><p class="eyebrow">{locale === 'ru' ? 'ЖИВОЙ ИСПАНСКИЙ' : 'ESPAÑOL EN MOVIMIENTO'}</p><h2>{locale === 'ru' ? 'Пусть испанский станет частью вашего дня' : 'Haz que el español forme parte de tu día'}</h2><p>{locale === 'ru' ? 'От первого заказа на рынке до лёгкого разговора за чашкой кофе — познакомьтесь со школой на пробном уроке.' : 'Del primer pedido en el mercado a una charla tranquila con un café: conoce la escuela en una clase de prueba.'}</p><a class="text-link" href={`tel:${phone}`}>{c.hero.primary_cta} <span aria-hidden="true">↗</span></a></div>
+      <div class="life-gallery">
+        <figure class="life-photo life-photo-main"><img src={`${basePath}/images/spanish-in-the-city.webp`} alt={locale === 'ru' ? 'Иллюстративное фото: взрослый мужчина повторяет испанские слова на городском рынке' : 'Imagen ilustrativa: un hombre adulto repasa palabras en español en un mercado'} width="1000" height="1500" loading="lazy" decoding="async" /><figcaption>{locale === 'ru' ? 'Иллюстративное фото' : 'Imagen ilustrativa'}</figcaption></figure>
+        <figure class="life-photo life-photo-inset"><img src={`${basePath}/images/learning-together.webp`} alt={locale === 'ru' ? 'Иллюстративное фото: взрослые беседуют за учебным столом' : 'Imagen ilustrativa: adultos conversan alrededor de una mesa de estudio'} width="1200" height="800" loading="lazy" decoding="async" /><figcaption>{locale === 'ru' ? 'Иллюстративное фото' : 'Imagen ilustrativa'}</figcaption></figure>
+        <span class="gallery-note" aria-hidden="true">¡Hola!</span>
+      </div>
+    </section>
+
+    <section class="fit-band" data-reveal="up">
+      <div class="wrap fit-layout">
+        <div><p class="eyebrow">{locale === 'ru' ? 'ВАШ СЛЕДУЮЩИЙ ШАГ' : 'TU SIGUIENTE PASO'}</p><h2>{c.fit.title}</h2><p>{c.fit.body}</p></div>
+        <ul class="check-list">{c.fit.points.map((point) => <li><span aria-hidden="true">✓</span>{point}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="current-section wrap" data-reveal="up">
+      <div class="current-panel">
+        <div class="current-copy"><p class="eyebrow">{locale === 'ru' ? 'АКТУАЛЬНАЯ ИНФОРМАЦИЯ' : 'INFORMACIÓN ACTUAL'}</p><h2>{c.current.title}</h2><p>{c.current.intro}</p></div>
+        <div class="current-state"><span class="state-mark">01</span><p>{c.current.unknown}</p><a class="button button-light" href={`tel:${phone}`}>{c.current.cta}<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+    </section>
+
+    <section class="section wrap process-section" id="process" data-reveal="up">
+      <div class="section-heading"><p class="eyebrow">{locale === 'ru' ? 'БЕЗ ЛИШНИХ ШАГОВ' : 'SIN COMPLICACIONES'}</p><h2>{c.process.title}</h2></div>
+      <div class="process-grid">{c.process.steps.map((step) => <article class="process-card"><span>{step.n}</span><h3>{step.title}</h3><p>{step.body}</p></article>)}</div>
+    </section>
+
+    <section class="trust-section" data-reveal="up">
+      <div class="wrap trust-layout"><div class="trust-copy"><p class="eyebrow">{c.trust.eyebrow}</p><h2>{c.trust.title}</h2><p>{c.trust.body}</p><span class="history-pill">✳ &nbsp;{c.trust.history}</span></div><div class="trust-mark" aria-hidden="true"><div class="trust-circle"><span>N</span><small>TORREVIEJA<br />ESPAÑA</small></div><img src={`${basePath}/assets/signature/brush-yellow-v02.svg`} alt="" /></div></div>
+    </section>
+
+    <section class="faq-section wrap" id="faq" data-reveal="up"><div class="section-heading"><p class="eyebrow">{locale === 'ru' ? 'ОТВЕТЫ' : 'RESPUESTAS'}</p><h2>{c.faq.title}</h2></div><div class="faq-list">{c.faq.items.map((item) => <details class="faq-item"><summary><span>{item.q}</span><span class="faq-plus" aria-hidden="true">+</span></summary><p>{item.a}</p></details>)}</div></section>
+
+    <section class="location-section" id="location"><div class="wrap location-layout"><div><p class="eyebrow">{c.location.eyebrow}</p><h2>{c.location.title}</h2><p class="location-address">{c.location.address}</p><div class="location-actions"><a class="button button-light" href={mapUrl} target="_blank" rel="noopener noreferrer">{c.location.directions} ↗</a><a class="phone-link" href={`tel:${phone}`}>{c.location.phone}</a></div></div><figure class="location-photo"><img src={`${basePath}/images/torrevieja-sunset.webp`} alt={locale === 'ru' ? 'Сгенерированное иллюстративное изображение набережной и порта Торревьехи на закате' : 'Imagen ilustrativa generada del paseo marítimo y el puerto de Torrevieja al atardecer'} width="1536" height="1024" loading="lazy" decoding="async" /><figcaption><span>Torrevieja · {locale === 'ru' ? 'закат' : 'atardecer'}</span></figcaption></figure></div></section>
+
+    <section class="contact-section wrap" id="contact"><div class="contact-card"><div><p class="eyebrow">{locale === 'ru' ? 'ДАВАЙТЕ НАЧНЁМ' : 'EMPECEMOS'}</p><h2>{c.contact.title}</h2><p>{c.contact.body}</p></div><div class="contact-actions"><a class="button" href={`tel:${phone}`}>{c.contact.phone}<span aria-hidden="true"> ↗</span></a><small>{locale === 'ru' ? 'Звонок по номеру школы' : 'Llamada al teléfono de la escuela'}</small></div></div></section>
+  </main>
+  <footer class="site-footer wrap"><a class="brand" href={`${basePath}/${locale}/`}><img src={`${basePath}/assets/signature/spain-flag-simple-v02.svg`} alt="" width="30" height="21" /><span>{c.nav.brand}</span></a><p>{c.footer.note}</p><div class="footer-links"><a href={`${basePath}/${locale === 'ru' ? 'ru/konfidencialnost/' : 'es/privacidad/'}`}>{locale === 'ru' ? 'Конфиденциальность' : 'Privacidad'}</a><a href={`${basePath}/${locale}/cookies/`}>Cookies</a><a href="#contact">{c.nav.cta}</a></div><small>© {new Date().getFullYear()} {c.nav.brand}</small></footer>
+  <script>
+    import '../../scripts/reveal.js';
+  </script>
+</SiteLayout>

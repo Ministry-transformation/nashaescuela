@@ -1,0 +1,21 @@
+{
+  "groups": [
+    {
+      "id": "spanish_landing_home",
+      "alternates": [
+        {
+          "lang": "es",
+          "path": "/es/"
+        },
+        {
+          "lang": "ru",
+          "path": "/ru/"
+        },
+        {
+          "lang": "x-default",
+          "path": "/es/"
+        }
+      ]
+    }
+  ]
+}

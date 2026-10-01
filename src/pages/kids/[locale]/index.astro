@@ -1,0 +1,237 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import '../../../styles/kids.css';
+
+export function getStaticPaths() {
+  return [{ params: { locale: 'ru' } }, { params: { locale: 'es' } }];
+}
+
+const { locale } = Astro.params;
+const ru = locale === 'ru';
+const baseUrl = import.meta.env.PUBLIC_SITE_URL?.replace(/\/$/, '');
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const phone = '+34633053297';
+const phoneHref = `tel:${phone}`;
+const address = 'C. del Palangre, 20, 03184 Torrevieja, Alicante';
+const mapUrl = 'https://www.google.com/maps/search/?api=1&query=C.%20del%20Palangre%2C%2020%2C%2003184%20Torrevieja';
+const routes = ru
+  ? { self: '/kids/ru/', other: '/kids/es/', adult: '/ru/' }
+  : { self: '/kids/es/', other: '/kids/ru/', adult: '/es/' };
+const seo = ru
+  ? {
+      title: 'Занятия для детей в Торревьехе — русский и испанский | Наша Школа',
+      description: 'Детские занятия русским для билингвов и испанским языком в Торревьехе. Позвоните, чтобы узнать о подходящих группах и условиях.'
+    }
+  : {
+      title: 'Clases para niños en Torrevieja: ruso y español | Nasha Escuela',
+      description: 'Clases de español para niños y apoyo de ruso para niños bilingües en Torrevieja. Consulta grupos y condiciones actuales.'
+    };
+const copy = ru
+  ? {
+      langName: 'Русский', otherName: 'ES', adults: 'Взрослым', navCourses: 'Направления', navApproach: 'Как выбрать', navFaq: 'Вопросы', navCta: 'Уточнить по телефону',
+      eyebrow: 'ДЛЯ ДЕТЕЙ И РОДИТЕЛЕЙ · ТОРРЕВЬЕХА',
+      titleBefore: 'Два языка —', titleHighlight: 'больше возможностей', titleAfter: 'для ребёнка',
+      lead: 'Детские занятия испанским и поддержка русского у детей-билингвов. Расскажите, что сейчас важно вашему ребёнку — школа поможет уточнить подходящее направление.',
+      cta: 'Узнать о занятиях', secondary: 'Выбрать направление',
+      note: 'Позвоните — расскажем, какие группы и условия доступны сейчас.',
+      sticker: '¡Hola! / Привет!', illustrationAlt: 'Иллюстрация с карточками слов на русском и испанском языках',
+      strip: ['Для детей', 'Торревьеха', 'Два языковых направления'],
+      problemEyebrow: 'ЯЗЫКИ В ЖИЗНИ РЕБЁНКА',
+      problemTitle: 'Дома — один язык, вокруг — другой. Это нормальная история.',
+      problemBody: 'Ребёнку может быть легче говорить на одном языке и сложнее читать, писать или общаться на другом. Родителям не нужно решать это в одиночку — сначала можно просто обсудить ситуацию со школой.',
+      problemCards: [
+        ['«В школе всё на испанском»', 'Хочется, чтобы ребёнку было увереннее общаться и учиться в испаноязычной среде.'],
+        ['«По-русски понимает, но отвечает иначе»', 'Важно поддержать семейный язык без сравнения и давления.'],
+        ['«Не понимаю, с чего начать»', 'Возраст, опыт и привычки ребёнка помогут обсудить, какое направление рассмотреть.']
+      ],
+      pathsEyebrow: 'ДВА НАПРАВЛЕНИЯ', pathsTitle: 'С чего начать именно вашему ребёнку?',
+      pathsIntro: 'Выберите язык, который сейчас нужен ребёнку больше. Если сомневаетесь — позвоните, и школа расскажет об актуальных вариантах.',
+      spanishTitle: 'Испанский для детей', spanishTag: 'ДЛЯ ЖИЗНИ В ИСПАНИИ',
+      spanishBody: 'Испанский для общения, школьной среды и повседневных ситуаций в Торревьехе. Уточните доступный возраст, уровень, расписание и формат занятий.',
+      spanishLink: 'Уточнить занятия по испанскому',
+      russianTitle: 'Русский для детей-билингвов', russianTag: 'СЕМЕЙНЫЙ ЯЗЫК',
+      russianBody: 'Поддержка русского языка в устной речи, чтении и письме — с учётом того, что ребёнок растёт в испаноязычной среде. Подходящую группу и возраст уточните у школы.',
+      russianLink: 'Уточнить занятия по русскому',
+      methodEyebrow: 'КАК ОБСУДИТЬ ВЫБОР', methodTitle: 'Начните с ребёнка, не с названия курса',
+      steps: [
+        ['01', 'Расскажите о ситуации', 'Сколько лет ребёнку и какой язык сейчас хочется поддержать?'],
+        ['02', 'Уточните, что доступно', 'Спросите про группы, возраст, уровень, расписание и условия.'],
+        ['03', 'Решите спокойно', 'Сначала получите информацию — решение о занятиях остаётся за вами.']
+      ],
+      trustEyebrow: 'РЯДОМ, В ТОРРЕВЬЕХЕ', trustTitle: 'Можно поговорить со школой напрямую',
+      trustBody: 'Наша Школа — образовательный центр в Торревьехе. Позвоните и расскажите, какой язык нужен ребёнку; актуальные варианты занятий и условия подтвердит школа.',
+      addressLabel: 'Адрес школы', phoneLabel: 'Телефон', directions: 'Открыть маршрут',
+      faqEyebrow: 'ОТВЕТЫ ДЛЯ РОДИТЕЛЕЙ', faqTitle: 'Что можно уточнить до записи',
+      faq: [
+        ['Есть занятия по испанскому и по русскому?', 'Да, можно уточнить оба детских направления: испанский и русский для детей-билингвов. Позвоните, чтобы узнать, какие группы доступны сейчас.'],
+        ['С какого возраста можно заниматься?', 'Возрастные группы, доступные сейчас, подтвердит школа по телефону. Расскажите возраст ребёнка — вам подскажут актуальные варианты.'],
+        ['Ребёнок понимает русский, но отвечает по-испански. Это подходит?', 'Это частая ситуация в двуязычной среде. Позвоните и опишите, как ребёнок использует оба языка; школа расскажет, какие варианты поддержки есть сейчас.'],
+        ['Где проходят занятия и сколько они стоят?', 'Школа находится по адресу C. del Palangre, 20, 03184 Torrevieja. Актуальные расписание, стоимость и условия уточняются напрямую.']
+      ],
+      finalEyebrow: 'СЛЕДУЮЩИЙ ШАГ', finalTitle: 'Расскажите, что нужно вашему ребёнку',
+      finalBody: 'Позвоните в Nasha Escuela: уточните занятия по русскому или испанскому, возрастные группы и актуальные условия.',
+      finalCta: 'Позвонить в школу', callNote: 'Нажатие откроет звонок по номеру школы.',
+      footer: 'Занятия для детей на русском и испанском в Торревьехе', privacy: 'Конфиденциальность'
+    }
+  : {
+      langName: 'Español', otherName: 'RU', adults: 'Adultos', navCourses: 'Clases', navApproach: 'Cómo elegir', navFaq: 'Preguntas', navCta: 'Consultar por teléfono',
+      eyebrow: 'PARA NIÑOS Y FAMILIAS · TORREVIEJA',
+      titleBefore: 'Dos idiomas,', titleHighlight: 'más caminos', titleAfter: 'para crecer',
+      lead: 'Clases de español para niños y apoyo de ruso para niños bilingües. Cuéntanos qué necesita tu hijo ahora y te ayudaremos a consultar las opciones disponibles.',
+      cta: 'Consultar clases', secondary: 'Ver las opciones',
+      note: 'Llámanos y te informaremos sobre los grupos y condiciones actuales.',
+      sticker: '¡Hola! / Привет!', illustrationAlt: 'Ilustración con tarjetas de palabras en ruso y español',
+      strip: ['Para niños', 'Torrevieja', 'Dos idiomas'],
+      problemEyebrow: 'LOS IDIOMAS EN SU DÍA A DÍA',
+      problemTitle: 'En casa se habla una lengua; fuera, otra. Es parte de crecer aquí.',
+      problemBody: 'A veces un niño se siente más cómodo hablando en un idioma y necesita más apoyo para leer, escribir o conversar en otro. No hace falta resolverlo todo en casa: podéis empezar con una consulta.',
+      problemCards: [
+        ['«En el cole todo es en español»', 'Queremos que se sienta cada vez más seguro comunicándose en su entorno.'],
+        ['«Entiende ruso, pero responde en español»', 'La lengua familiar también puede seguir presente, sin comparaciones ni presión.'],
+        ['«No sé por dónde empezar»', 'La edad y la experiencia lingüística ayudan a conversar sobre qué opción explorar.']
+      ],
+      pathsEyebrow: 'DOS OPCIONES', pathsTitle: '¿Qué idioma necesita más ahora?',
+      pathsIntro: 'Elige el idioma que más puede ayudar a tu hijo en este momento. Si tienes dudas, llama y pregunta por las opciones actuales.',
+      spanishTitle: 'Español para niños', spanishTag: 'PARA SU VIDA EN ESPAÑA',
+      spanishBody: 'Español para comunicarse en el entorno escolar y en situaciones cotidianas de Torrevieja. Consulta la edad, el nivel, el horario y el formato disponibles.',
+      spanishLink: 'Consultar clases de español',
+      russianTitle: 'Ruso para niños bilingües', russianTag: 'LENGUA FAMILIAR',
+      russianBody: 'Apoyo al ruso oral, la lectura y la escritura para niños que crecen en un entorno hispanohablante. Consulta con la escuela la edad y el grupo adecuados.',
+      russianLink: 'Consultar clases de ruso',
+      methodEyebrow: 'CÓMO EMPEZAR', methodTitle: 'Empezamos por tu hijo, no por un curso',
+      steps: [
+        ['01', 'Cuéntanos su situación', '¿Qué edad tiene y qué idioma queréis reforzar ahora?'],
+        ['02', 'Consulta las opciones', 'Pregunta por los grupos, edades, niveles, horarios y condiciones.'],
+        ['03', 'Decide con calma', 'Primero conoces la información; la decisión sigue siendo vuestra.']
+      ],
+      trustEyebrow: 'CERCA, EN TORREVIEJA', trustTitle: 'Habla directamente con la escuela',
+      trustBody: 'Nasha Escuela es un centro educativo en Torrevieja. Cuéntanos qué idioma necesita tu hijo y te confirmaremos las opciones y condiciones actuales.',
+      addressLabel: 'Dirección', phoneLabel: 'Teléfono', directions: 'Ver cómo llegar',
+      faqEyebrow: 'PARA LAS FAMILIAS', faqTitle: 'Lo que puedes consultar antes de apuntarte',
+      faq: [
+        ['¿Hay clases de español y de ruso para niños?', 'Puedes consultar las dos opciones infantiles: español y apoyo de ruso para niños bilingües. Llama para confirmar los grupos disponibles ahora.'],
+        ['¿A partir de qué edad puede empezar?', 'La escuela confirmará por teléfono las edades de los grupos actuales. Cuéntanos cuántos años tiene tu hijo y te informaremos.'],
+        ['Entiende ruso, pero responde en español. ¿Es adecuado?', 'Es una situación habitual en familias bilingües. Cuéntanos cómo usa cada idioma y te explicaremos qué opciones de apoyo hay ahora.'],
+        ['¿Dónde son las clases y cuánto cuestan?', 'La escuela está en C. del Palangre, 20, 03184 Torrevieja. Consulta directamente los horarios, precios y condiciones actuales.']
+      ],
+      finalEyebrow: 'EL SIGUIENTE PASO', finalTitle: 'Cuéntanos qué necesita tu hijo',
+      finalBody: 'Llama a Nasha Escuela y consulta las clases de ruso o español, las edades de los grupos y las condiciones actuales.',
+      finalCta: 'Llamar a la escuela', callNote: 'El botón abrirá una llamada al teléfono de la escuela.',
+      footer: 'Clases para niños en ruso y español en Torrevieja', privacy: 'Privacidad'
+    };
+const canonical = baseUrl ? `${baseUrl}${routes.self}` : undefined;
+const alternateRu = baseUrl ? `${baseUrl}/kids/ru/` : undefined;
+const alternateEs = baseUrl ? `${baseUrl}/kids/es/` : undefined;
+---
+
+<SiteLayout lang={ru ? 'ru' : 'es'} title={seo.title} description={seo.description} canonical={canonical} alternateRu={alternateRu} alternateEs={alternateEs} noindex={!baseUrl}>
+  <a class="kids-skip" href="#kids-main">{ru ? 'Перейти к содержанию' : 'Saltar al contenido'}</a>
+  <header class="kids-header">
+    <a class="kids-brand" href={`${basePath}${routes.self}`} aria-label="Nasha Escuela">
+      <span class="kids-brand-mark" aria-hidden="true">Я<span>•</span>A</span>
+      <span>Nasha <b>Escuela</b><small>{ru ? 'ДЕТСКОЕ НАПРАВЛЕНИЕ' : 'PARA NIÑOS'}</small></span>
+    </a>
+    <nav class="kids-nav" aria-label={ru ? 'Основная навигация' : 'Navegación principal'}>
+      <a href="#paths">{copy.navCourses}</a><a href="#how">{copy.navApproach}</a><a href="#faq">{copy.navFaq}</a>
+    </nav>
+    <div class="kids-header-actions">
+      <a class="kids-adults" href={`${basePath}${routes.adult}`}>{copy.adults}</a>
+      <a class="kids-locale" href={`${basePath}${routes.other}`} lang={ru ? 'es' : 'ru'} aria-label={ru ? 'Ver en español' : 'Ver en ruso'}>{copy.otherName}</a>
+      <a class="kids-button kids-button-small" href={phoneHref}>{copy.navCta}<span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="kids-main">
+    <section class="kids-hero">
+      <div class="kids-shell kids-hero-grid">
+        <div class="kids-hero-copy">
+          <p class="kids-eyebrow"><span></span>{copy.eyebrow}</p>
+          <h1>{copy.titleBefore} <em>{copy.titleHighlight}</em> {copy.titleAfter}</h1>
+          <p class="kids-lead">{copy.lead}</p>
+          <div class="kids-hero-actions">
+            <a class="kids-button" href={phoneHref}>{copy.cta}<span aria-hidden="true">↗</span></a>
+            <a class="kids-text-link" href="#paths">{copy.secondary}<span aria-hidden="true"> ↓</span></a>
+          </div>
+          <p class="kids-note"><span aria-hidden="true">✳</span>{copy.note}</p>
+        </div>
+        <div class="kids-hero-art" role="img" aria-label={copy.illustrationAlt}>
+          <div class="kids-art-sun" aria-hidden="true"></div>
+          <span class="kids-art-spark kids-spark-one" aria-hidden="true">✳</span>
+          <span class="kids-art-spark kids-spark-two" aria-hidden="true">✦</span>
+          <div class="kids-art-card kids-art-back" aria-hidden="true"><span>leer</span><b>читать</b></div>
+          <div class="kids-art-sticker">{copy.sticker}</div>
+          <img class="kids-art-language" src={`${basePath}/assets/kids/bilingual-speech.svg`} alt="" width="520" height="300" fetchpriority="high" decoding="async" />
+          <span class="kids-art-caption">{ru ? 'КАЖДЫЙ ЯЗЫК — СВОЙ ПУТЬ' : 'CADA IDIOMA, SU CAMINO'}</span>
+        </div>
+      </div>
+      <div class="kids-shell kids-proof-strip">
+        {copy.strip.map((item, index) => <span><b>{['✳', '⌖', '↗'][index]}</b>{item}</span>)}
+      </div>
+    </section>
+
+    <section class="kids-section kids-shell kids-story">
+      <div class="kids-story-copy">
+        <p class="kids-eyebrow">{copy.problemEyebrow}</p>
+        <h2>{copy.problemTitle}</h2>
+        <p>{copy.problemBody}</p>
+        <img src={`${basePath}/assets/kids/language-pairs.svg`} alt="" width="520" height="220" loading="lazy" decoding="async" />
+      </div>
+      <div class="kids-parent-cards">
+        {copy.problemCards.map((item, index) => <article class={`kids-parent-card kids-parent-${index + 1}`}>
+          <span class="kids-card-index">0{index + 1}</span><h3>{item[0]}</h3><p>{item[1]}</p>
+        </article>)}
+      </div>
+    </section>
+
+    <section class="kids-paths" id="paths">
+      <div class="kids-shell">
+        <div class="kids-section-heading"><p class="kids-eyebrow">{copy.pathsEyebrow}</p><h2>{copy.pathsTitle}</h2><p>{copy.pathsIntro}</p></div>
+        <div class="kids-track-grid">
+          <article class="kids-track kids-track-spanish">
+            <div class="kids-track-top"><span class="kids-track-symbol">¡Hola!</span><span class="kids-track-tag">{copy.spanishTag}</span></div>
+            <h3>{copy.spanishTitle}</h3><p>{copy.spanishBody}</p>
+            <a href={phoneHref}>{copy.spanishLink}<span aria-hidden="true"> ↗</span></a>
+          </article>
+          <article class="kids-track kids-track-russian">
+            <div class="kids-track-top"><span class="kids-track-symbol">А • Б</span><span class="kids-track-tag">{copy.russianTag}</span></div>
+            <h3>{copy.russianTitle}</h3><p>{copy.russianBody}</p>
+            <a href={phoneHref}>{copy.russianLink}<span aria-hidden="true"> ↗</span></a>
+          </article>
+        </div>
+        <p class="kids-path-disclaimer">{ru ? 'Возраст, расписание, стоимость и актуальные группы лучше уточнить напрямую у школы.' : 'Consulta directamente con la escuela las edades, los horarios, los precios y los grupos actuales.'}</p>
+      </div>
+    </section>
+
+    <section class="kids-section kids-shell kids-how" id="how">
+      <div class="kids-section-heading"><p class="kids-eyebrow">{copy.methodEyebrow}</p><h2>{copy.methodTitle}</h2></div>
+      <div class="kids-steps">
+        {copy.steps.map((step, index) => <article class={`kids-step kids-step-${index + 1}`}><span>{step[0]}</span><h3>{step[1]}</h3><p>{step[2]}</p></article>)}
+      </div>
+    </section>
+
+    <section class="kids-contact-band">
+      <div class="kids-shell kids-contact-grid">
+        <div><p class="kids-eyebrow">{copy.trustEyebrow}</p><h2>{copy.trustTitle}</h2><p>{copy.trustBody}</p>
+          <div class="kids-address"><span>{copy.addressLabel}</span><a href={mapUrl} target="_blank" rel="noopener noreferrer">{address} ↗</a></div>
+        </div>
+        <div class="kids-contact-card"><span class="kids-contact-icon" aria-hidden="true">✳</span><p>{copy.phoneLabel}</p><a class="kids-phone" href={phoneHref}>{phone}</a><a class="kids-button kids-button-light" href={phoneHref}>{copy.navCta}<span aria-hidden="true">↗</span></a><a class="kids-map-link" href={mapUrl} target="_blank" rel="noopener noreferrer">{copy.directions} ↗</a></div>
+      </div>
+    </section>
+
+    <section class="kids-section kids-shell kids-faq" id="faq">
+      <div class="kids-section-heading"><p class="kids-eyebrow">{copy.faqEyebrow}</p><h2>{copy.faqTitle}</h2></div>
+      <div class="kids-faq-list">{copy.faq.map((item) => <details><summary><span>{item[0]}</span><b aria-hidden="true">+</b></summary><p>{item[1]}</p></details>)}</div>
+    </section>
+
+    <section class="kids-final kids-shell">
+      <div class="kids-final-card"><div><p class="kids-eyebrow">{copy.finalEyebrow}</p><h2>{copy.finalTitle}</h2><p>{copy.finalBody}</p></div><div class="kids-final-action"><a class="kids-button" href={phoneHref}>{copy.finalCta}<span aria-hidden="true">↗</span></a><small>{copy.callNote}</small></div><span class="kids-final-sticker" aria-hidden="true">АБВ<br />ABC</span></div>
+    </section>
+  </main>
+
+  <footer class="kids-footer kids-shell">
+    <a class="kids-brand" href={`${basePath}${routes.self}`}><span class="kids-brand-mark" aria-hidden="true">Я<span>•</span>A</span><span>Nasha <b>Escuela</b></span></a>
+    <p>{copy.footer}</p>
+    <div><a href={`${basePath}${ru ? '/ru/konfidencialnost/' : '/es/privacidad/'}`}>{copy.privacy}</a><a href={`${basePath}${routes.adult}`}>{copy.adults}</a></div>
+    <small>© {new Date().getFullYear()} Nasha Escuela</small>
+  </footer>
+</SiteLayout>

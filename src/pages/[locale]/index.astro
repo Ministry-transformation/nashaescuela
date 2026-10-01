@@ -29,7 +29,7 @@ const situations = c.situations.items;
       <a href="#course">{c.nav.course}</a><a href="#location">{c.nav.location}</a><a href="#faq">{c.nav.faq}</a>
     </nav>
     <div class="header-actions">
-      <a class="kids-entry" href={`${basePath}/kids/${locale}/`}>{locale === 'ru' ? 'Детям' : 'Niños'}</a>
+      <a class="kids-entry" href={`${basePath}${locale === 'ru' ? '/kids/ru/' : '/kids/'}`}>{locale === 'ru' ? 'Детям' : 'Niños'}</a>
       <a class="language" href={`${basePath}/${other}/`} lang={other} aria-label={locale === 'ru' ? 'Ver en español' : 'Ver en ruso'}>{c.nav.switch}</a>
       <a class="button button-small" href={`tel:${phone}`}>{c.nav.cta}</a>
     </div>
@@ -109,7 +109,7 @@ const situations = c.situations.items;
 
     <section class="contact-section wrap" id="contact"><div class="contact-card"><div><p class="eyebrow">{locale === 'ru' ? 'ДАВАЙТЕ НАЧНЁМ' : 'EMPECEMOS'}</p><h2>{c.contact.title}</h2><p>{c.contact.body}</p></div><div class="contact-actions"><a class="button" href={`tel:${phone}`}>{c.contact.phone}<span aria-hidden="true"> ↗</span></a><small>{locale === 'ru' ? 'Звонок по номеру школы' : 'Llamada al teléfono de la escuela'}</small></div></div></section>
   </main>
-  <footer class="site-footer wrap"><a class="brand" href={`${basePath}/${locale}/`}><img src={`${basePath}/assets/signature/spain-flag-simple-v02.svg`} alt="" width="30" height="21" /><span>{c.nav.brand}</span></a><p>{c.footer.note}</p><div class="footer-links"><a href={`${basePath}/${locale === 'ru' ? 'ru/konfidencialnost/' : 'es/privacidad/'}`}>{locale === 'ru' ? 'Конфиденциальность' : 'Privacidad'}</a><a href={`${basePath}/${locale}/cookies/`}>Cookies</a><a href={`${basePath}/kids/${locale}/`}>{c.footer.children_link}</a><a href="#contact">{c.nav.cta}</a></div><small>© {new Date().getFullYear()} {c.nav.brand}</small></footer>
+  <footer class="site-footer wrap"><a class="brand" href={`${basePath}/${locale}/`}><img src={`${basePath}/assets/signature/spain-flag-simple-v02.svg`} alt="" width="30" height="21" /><span>{c.nav.brand}</span></a><p>{c.footer.note}</p><div class="footer-links"><a href={`${basePath}/${locale === 'ru' ? 'ru/konfidencialnost/' : 'es/privacidad/'}`}>{locale === 'ru' ? 'Конфиденциальность' : 'Privacidad'}</a><a href={`${basePath}/${locale}/cookies/`}>Cookies</a><a href={`${basePath}${locale === 'ru' ? '/kids/ru/' : '/kids/'}`}>{c.footer.children_link}</a><a href="#contact">{c.nav.cta}</a></div><small>© {new Date().getFullYear()} {c.nav.brand}</small></footer>
   <script>
     import '../../scripts/reveal.js';
   </script>

@@ -4,7 +4,7 @@ export const GET: APIRoute = ({ site }) => {
   const root = (import.meta.env.PUBLIC_SITE_URL || site.toString()).replace(/\/$/, '');
   const pairs = [
     { es: '/es/', ru: '/ru/' },
-    { es: '/kids/es/', ru: '/kids/ru/' },
+    { es: '/kids/', ru: '/kids/ru/' },
   ];
   const urls = pairs.flatMap(({ es, ru }) => [es, ru].map((path) =>
     `<url><loc>${root}${path}</loc><xhtml:link rel="alternate" hreflang="es" href="${root}${es}"/><xhtml:link rel="alternate" hreflang="ru" href="${root}${ru}"/><xhtml:link rel="alternate" hreflang="x-default" href="${root}${es}"/></url>`

@@ -30,7 +30,7 @@ const copy = ru
       lead: 'Детские занятия испанским и поддержка русского у детей-билингвов. Расскажите, что сейчас важно вашему ребёнку — школа поможет уточнить подходящее направление.',
       cta: 'Узнать о занятиях', secondary: 'Выбрать направление',
       note: 'Позвоните — расскажем, какие группы и условия доступны сейчас.',
-      sticker: '¡Hola! / Привет!', illustrationAlt: 'Иллюстрация с карточками слов на русском и испанском языках',
+      sticker: '¡Hola! / Привет!', illustrationAlt: 'Иллюстрация с книгой, речевыми облачками, солнцем и морем для изучения языков',
       strip: ['Для детей', 'Торревьеха', 'Два языковых направления'],
       problemEyebrow: 'ЯЗЫКИ В ЖИЗНИ РЕБЁНКА',
       problemTitle: 'Дома — один язык, вокруг — другой. Это нормальная история.',
@@ -76,7 +76,7 @@ const copy = ru
       lead: 'Clases de español para niños y apoyo de ruso para niños bilingües. Cuéntanos qué necesita tu hijo ahora y te ayudaremos a consultar las opciones disponibles.',
       cta: 'Consultar clases', secondary: 'Ver las opciones',
       note: 'Llámanos y te informaremos sobre los grupos y condiciones actuales.',
-      sticker: '¡Hola! / Привет!', illustrationAlt: 'Ilustración con tarjetas de palabras en ruso y español',
+      sticker: '¡Hola! / Привет!', illustrationAlt: 'Ilustración de un libro, bocadillos de diálogo, sol y mar para aprender idiomas',
       strip: ['Para niños', 'Torrevieja', 'Dos idiomas'],
       problemEyebrow: 'LOS IDIOMAS EN SU DÍA A DÍA',
       problemTitle: 'En casa se habla una lengua; fuera, otra. Es parte de crecer aquí.',
@@ -151,13 +151,10 @@ const alternateEs = baseUrl ? `${baseUrl}/kids/` : undefined;
           <p class="kids-note"><span aria-hidden="true">✳</span>{copy.note}</p>
         </div>
         <div class="kids-hero-art" role="img" aria-label={copy.illustrationAlt}>
-          <div class="kids-art-sun" aria-hidden="true"></div>
-          <span class="kids-art-spark kids-spark-one" aria-hidden="true">✳</span>
-          <span class="kids-art-spark kids-spark-two" aria-hidden="true">✦</span>
-          <div class="kids-art-card kids-art-back" aria-hidden="true"><span>leer</span><b>читать</b></div>
-          <div class="kids-art-sticker">{copy.sticker}</div>
-          <img class="kids-art-language" src={`${basePath}/assets/kids/bilingual-speech.svg`} alt="" width="520" height="300" fetchpriority="high" decoding="async" />
-          <span class="kids-art-caption">{ru ? 'КАЖДЫЙ ЯЗЫК — СВОЙ ПУТЬ' : 'CADA IDIOMA, SU CAMINO'}</span>
+          <span class="kids-flag-orbit" aria-hidden="true"><i></i><b></b><i></i></span>
+          <img class="kids-art-collage" src={`${basePath}/assets/kids/kids-language-hero.webp`} alt="" width="1536" height="1024" fetchpriority="high" decoding="async" />
+          <span class="kids-art-sticker">{copy.sticker}</span>
+          <span class="kids-art-caption">{ru ? 'ИГРАЕМ · ЧИТАЕМ · ГОВОРИМ' : 'JUGAMOS · LEEMOS · HABLAMOS'}</span>
         </div>
       </div>
       <div class="kids-shell kids-proof-strip">
@@ -170,7 +167,7 @@ const alternateEs = baseUrl ? `${baseUrl}/kids/` : undefined;
         <p class="kids-eyebrow">{copy.problemEyebrow}</p>
         <h2>{copy.problemTitle}</h2>
         <p>{copy.problemBody}</p>
-        <img src={`${basePath}/assets/kids/language-pairs.svg`} alt="" width="520" height="220" loading="lazy" decoding="async" />
+        <img class="kids-story-illustration" src={`${basePath}/assets/kids/kids-language-story.webp`} alt="" width="1122" height="1402" loading="lazy" decoding="async" />
       </div>
       <div class="kids-parent-cards">
         {copy.problemCards.map((item, index) => <article class={`kids-parent-card kids-parent-${index + 1}`}>
@@ -230,4 +227,19 @@ const alternateEs = baseUrl ? `${baseUrl}/kids/` : undefined;
     <div><a href={`${basePath}${ru ? '/ru/konfidencialnost/' : '/es/privacidad/'}`}>{copy.privacy}</a><a href={`${basePath}${routes.adult}`}>{copy.adults}</a></div>
     <small>© {new Date().getFullYear()} Nasha Escuela</small>
   </footer>
+  <script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('kids-motion-ready');
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        }
+      }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+      document.querySelectorAll('.kids-parent-card, .kids-track, .kids-step, .kids-contact-card, .kids-faq-list details, .kids-final-card').forEach((element) => revealObserver.observe(element));
+    }
+  </script>
 </SiteLayout>

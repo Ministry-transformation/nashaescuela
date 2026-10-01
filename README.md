@@ -1,4 +1,4 @@
-# Nasha Escuela — Spanish learning landing
+# Nasha Escuela: Spanish learning landing
 
 Static RU/ES landing built with Astro and Tailwind CSS.
 

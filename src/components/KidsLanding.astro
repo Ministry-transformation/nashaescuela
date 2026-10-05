@@ -4,6 +4,14 @@ import '../styles/kids.css';
 
 const { locale } = Astro.props;
 const ru = locale === 'ru';
+const developerLabels: Record<string, string> = {
+  uk: 'Розроблено Міністерством трансформації',
+  ua: 'Розроблено Міністерством трансформації',
+  ru: 'Разработано Министерством трансформации',
+  es: 'Desarrollado por el Ministerio de Transformación',
+  en: 'Developed by the Ministry of Transformation'
+};
+const developerLabel = developerLabels[locale] ?? developerLabels[ru ? 'ru' : 'es'];
 const baseUrl = import.meta.env.PUBLIC_SITE_URL?.replace(/\/$/, '');
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
 const phone = '+34633053297';
@@ -225,7 +233,7 @@ const alternateEs = baseUrl ? `${baseUrl}/kids/` : undefined;
     <a class="kids-brand" href={`${basePath}${routes.self}`}><span class="kids-brand-mark" aria-hidden="true">Я<span>•</span>A</span><span>Nasha Escuela <b>Kids</b></span></a>
     <p>{copy.footer}</p>
     <div><a href={`${basePath}${ru ? '/ru/konfidencialnost/' : '/es/privacidad/'}`}>{copy.privacy}</a><a href={`${basePath}${routes.adult}`}>{copy.adults}</a></div>
-    <small>© {new Date().getFullYear()} Nasha Escuela</small>
+    <small>© {new Date().getFullYear()} Nasha Escuela <span aria-hidden="true">·</span> <a class="kids-developer-link" href="https://ministry-transformation.github.io/" aria-label={developerLabel} target="_blank" rel="noopener noreferrer">{developerLabel}</a></small>
   </footer>
   <script>
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

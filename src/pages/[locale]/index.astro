@@ -5,6 +5,14 @@ import es from '../../data/es.json';
 export function getStaticPaths() { return [{ params: { locale: 'ru' } }, { params: { locale: 'es' } }]; }
 const { locale } = Astro.params;
 const c = locale === 'ru' ? ru : es;
+const developerLabels: Record<string, string> = {
+  uk: 'Розроблено Міністерством трансформації',
+  ua: 'Розроблено Міністерством трансформації',
+  ru: 'Разработано Министерством трансформации',
+  es: 'Desarrollado por el Ministerio de Transformación',
+  en: 'Developed by the Ministry of Transformation',
+};
+const developerLabel = developerLabels[locale ?? ''] ?? developerLabels.es;
 const seo = locale === 'ru'
   ? { title: 'Пробный урок испанского в Торревьехе | Наша Школа', description: 'Запишитесь на пробный урок испанского для взрослых в Торревьехе. Позвоните, чтобы уточнить доступность, время и условия.' }
   : { title: 'Clase de prueba de español en Torrevieja | Nasha Escuela', description: 'Reserva una clase de prueba de español para adultos en Torrevieja. Llama para confirmar disponibilidad, horario y condiciones.' };
@@ -109,7 +117,7 @@ const situations = c.situations.items;
 
     <section class="contact-section wrap" id="contact"><div class="contact-card"><div><p class="eyebrow">{locale === 'ru' ? 'ДАВАЙТЕ НАЧНЁМ' : 'EMPECEMOS'}</p><h2>{c.contact.title}</h2><p>{c.contact.body}</p></div><div class="contact-actions"><a class="button" href={`tel:${phone}`}>{c.contact.phone}<span aria-hidden="true"> ↗</span></a><small>{locale === 'ru' ? 'Звонок по номеру школы' : 'Llamada al teléfono de la escuela'}</small></div></div></section>
   </main>
-  <footer class="site-footer wrap"><a class="brand" href={`${basePath}/${locale}/`}><img src={`${basePath}/assets/signature/spain-flag-simple-v02.svg`} alt="" width="30" height="21" /><span>{c.nav.brand}</span></a><p>{c.footer.note}</p><div class="footer-links"><a href={`${basePath}/${locale === 'ru' ? 'ru/konfidencialnost/' : 'es/privacidad/'}`}>{locale === 'ru' ? 'Конфиденциальность' : 'Privacidad'}</a><a href={`${basePath}/${locale}/cookies/`}>Cookies</a><a href={`${basePath}${locale === 'ru' ? '/kids/ru/' : '/kids/'}`}>{c.footer.children_link}</a><a href="#contact">{c.nav.cta}</a></div><small>© {new Date().getFullYear()} {c.nav.brand}</small></footer>
+  <footer class="site-footer wrap"><a class="brand" href={`${basePath}/${locale}/`}><img src={`${basePath}/assets/signature/spain-flag-simple-v02.svg`} alt="" width="30" height="21" /><span>{c.nav.brand}</span></a><p>{c.footer.note}</p><div class="footer-links"><a href={`${basePath}/${locale === 'ru' ? 'ru/konfidencialnost/' : 'es/privacidad/'}`}>{locale === 'ru' ? 'Конфиденциальность' : 'Privacidad'}</a><a href={`${basePath}/${locale}/cookies/`}>Cookies</a><a href={`${basePath}${locale === 'ru' ? '/kids/ru/' : '/kids/'}`}>{c.footer.children_link}</a><a href="#contact">{c.nav.cta}</a></div><small>© {new Date().getFullYear()} {c.nav.brand}<span aria-hidden="true"> · </span><a class="developer-credit" href="https://ministry-transformation.github.io/" aria-label={developerLabel} target="_blank" rel="noopener noreferrer">{developerLabel}</a></small></footer>
   <script>
     import '../../scripts/reveal.js';
   </script>

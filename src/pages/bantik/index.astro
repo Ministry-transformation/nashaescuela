@@ -1,0 +1,62 @@
+---
+import '../../styles/bantik.css';
+
+const whatsappUrl = (topic = 'los accesorios') =>
+  `https://wa.me/34641505041?text=${encodeURIComponent(`Hola, me gustaría consultar por ${topic} de BanTik.`)}`;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff9f0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="description" content="Vista previa de BanTik: lazos y pasadores para niñas. Proyecto en revisión." />
+    <title>BanTik — accesorios para niñas</title>
+  </head>
+  <body class="bantik-page">
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="preview-bar"><span aria-hidden="true">✳</span> Una vista previa · colección y disponibilidad por confirmar</div>
+    <header class="site-header" id="inicio">
+      <a class="wordmark" href="#inicio" aria-label="BanTik, inicio"><span class="wordmark-flower" aria-hidden="true">✿</span><span>BanTik</span><span class="wordmark-dot" aria-hidden="true">.</span><small>accesorios para niñas</small></a>
+      <nav class="desktop-nav" aria-label="Navegación principal">
+        <a href="#coleccion">Colección</a><a href="#bantik">El mundo BanTik</a><a class="nav-contact" href="#contacto">Hablemos <span aria-hidden="true">↗</span></a>
+      </nav>
+      <a class="mobile-contact" href="#contacto" aria-label="Ir a contacto">↗</a>
+    </header>
+
+    <main id="contenido">
+      <section class="hero section-wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-flower" aria-hidden="true">✿</span> Pequeños detalles, mucho color</p>
+          <h1 id="hero-title">Un toque<br />bonito para<br /><span>cada día.</span></h1>
+          <p class="hero-intro">Lazos y pasadores para el pelo de niñas. Encuentra tu estilo favorito y pregúntanos qué modelos están disponibles.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#coleccion">Ver colección <span aria-hidden="true">↓</span></a><a class="text-link" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Escríbenos <span aria-hidden="true">↗</span></a></div>
+          <p class="hero-note"><span class="note-star" aria-hidden="true">✳</span> Una colección para llevar a tu manera</p>
+        </div>
+        <figure class="hero-visual">
+          <div class="hero-photo-wrap"><span class="hero-sun" aria-hidden="true"></span><img src="/nashaescuela/images/bantik/tinki-hero-concept.webp" alt="Composición conceptual de lazos satinados en tonos cereza, rosa y azul cielo" fetchpriority="high" /><span class="hero-sticker"><span>con</span><strong>cariño</strong><i aria-hidden="true">✿</i></span></div>
+          <figcaption>Inspiración BanTik <span>· imagen conceptual, no es un artículo del catálogo</span></figcaption>
+        </figure>
+        <span class="hero-scribble" aria-hidden="true">bonito<br />a tu manera</span>
+      </section>
+
+      <section class="collection" id="coleccion" aria-labelledby="collection-title">
+        <div class="section-wrap">
+          <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-flower" aria-hidden="true">✿</span> Encuentra tu favorito</p><h2 id="collection-title">¿Qué te apetece<br /><span>llevar hoy?</span></h2></div><p class="section-aside">Dos familias de accesorios para jugar con el peinado. El catálogo real aún está en preparación.</p></div>
+          <div class="category-grid">
+            <article class="category-card category-bows"><a href={whatsappUrl('los lazos')} target="_blank" rel="noopener noreferrer" class="category-link" aria-label="Consultar por lazos en WhatsApp"><div class="category-image"><img src="/nashaescuela/images/bantik/bows-editorial-concept.webp" alt="Imagen conceptual de lazos en tonos cereza, rosa y azul cielo" loading="lazy" /><span class="image-label">Inspiración · imagen conceptual</span><span class="card-sparkle" aria-hidden="true">✳</span></div><div class="category-meta"><div><span class="category-kicker">01 / Para jugar</span><h3>Lazos</h3></div><span class="round-arrow" aria-hidden="true">↗</span></div><p>Un lazo, un color, una forma muy tuya.</p></a></article>
+            <article class="category-card category-clips"><a href={whatsappUrl('los pasadores')} target="_blank" rel="noopener noreferrer" class="category-link" aria-label="Consultar por pasadores en WhatsApp"><div class="category-image"><img src="/nashaescuela/images/bantik/clips-editorial-concept.webp" alt="Imagen conceptual de pasadores y accesorios florales para el cabello" loading="lazy" /><span class="image-label">Inspiración · imagen conceptual</span><span class="card-sparkle" aria-hidden="true">✿</span></div><div class="category-meta"><div><span class="category-kicker">02 / Un toque especial</span><h3>Pasadores</h3></div><span class="round-arrow" aria-hidden="true">↗</span></div><p>Pequeños detalles para completar el peinado.</p></a></article>
+          </div>
+          <p class="catalog-note"><span aria-hidden="true">✳</span> Las imágenes muestran una dirección creativa. Los productos, colores y existencias deben confirmarse con BanTik.</p>
+        </div>
+      </section>
+
+      <section class="brand-note" id="bantik" aria-labelledby="brand-title"><div class="brand-note-inner section-wrap"><div class="brand-note-copy"><p class="eyebrow"><span class="eyebrow-flower" aria-hidden="true">✿</span> El mundo BanTik</p><h2 id="brand-title">Color para<br /><span>ser tú.</span></h2><p>Un accesorio puede cambiar el aire de un peinado. Explora lazos y pasadores y cuéntanos cuál te gusta; estamos preparando las fotos y detalles de la colección real.</p><a class="text-link" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Preguntar por la colección <span aria-hidden="true">↗</span></a></div><div class="brand-note-art" aria-hidden="true"><span class="art-flower flower-one">✿</span><span class="art-bow">♡</span><span class="art-flower flower-two">✳</span><span class="art-loop"></span><span class="art-caption">un poquito<br />de color</span></div></div></section>
+
+      <section class="contact section-wrap" id="contacto" aria-labelledby="contact-title"><div class="contact-panel"><div class="contact-copy"><p class="eyebrow"><span class="eyebrow-flower" aria-hidden="true">✿</span> ¿Tienes una pregunta?</p><h2 id="contact-title">Hablemos.</h2><p>Escríbenos para consultar por lazos o pasadores. El número que aparece en la tarjeta de marca está pendiente de confirmación.</p></div><a class="button button-light" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Abrir WhatsApp <span aria-hidden="true">↗</span></a></div><div class="social-row"><span>También en Instagram</span><a href="https://www.instagram.com/lazos.bantik/" target="_blank" rel="noopener noreferrer">@lazos.bantik <span aria-hidden="true">↗</span></a><small>Perfil indicado en la tarjeta · pendiente de verificación</small></div></section>
+    </main>
+
+    <footer class="site-footer"><a class="footer-mark" href="#inicio"><span aria-hidden="true">✿</span> BanTik</a><p>Vista previa de diseño · no es una tienda activa <span>/</span> Sitio desarrollado por <a class="studio-link" href="https://ministry-transformation.github.io/" target="_blank" rel="noopener noreferrer">Ministerio de Transformación ↗</a></p><a href="#inicio" class="back-top">Volver arriba ↑</a></footer>
+  </body>
+</html>

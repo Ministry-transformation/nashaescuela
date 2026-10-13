@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fff9f0"/>
+  <circle cx="1000" cy="70" r="330" fill="#f5c747"/>
+  <circle cx="1080" cy="90" r="250" fill="#e8c4cb"/>
+  <path d="M0 510Q260 420 520 520T1200 490V630H0Z" fill="#8e2b45"/>
+  <rect x="80" y="92" width="76" height="76" rx="25" fill="#f26b42"/>
+  <text x="118" y="146" fill="#fff9f0" font-family="Arial,sans-serif" font-size="48" font-weight="700" text-anchor="middle">✳</text>
+  <text x="188" y="148" fill="#20211d" font-family="Arial,sans-serif" font-size="42" font-weight="700">CANDY SPARK</text>
+  <text x="80" y="300" fill="#20211d" font-family="Arial,sans-serif" font-size="82" font-weight="700" letter-spacing="-5">Солодке, яке</text>
+  <text x="80" y="395" fill="#8e2b45" font-family="Georgia,serif" font-size="92" font-style="italic">обирають.</text>
+  <text x="80" y="570" fill="#fff9f0" font-family="Arial,sans-serif" font-size="24" letter-spacing="3">ГУРТОВИЙ АСОРТИМЕНТ · ПАРТНЕРСТВО · УКРАЇНА</text>
+</svg>
